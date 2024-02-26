@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: var(--io-spacing-9);
+  gap: var(--io-spacing-9);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: var(--io-spacing-4);
+}

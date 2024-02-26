@@ -7,7 +7,9 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true,
-    "**/.next": true
+    "**/.next": true,
+    "**/*.tsbuildinfo": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/.pnpm/typescript@5.3.3/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   ApolloClient,
@@ -7,33 +9,20 @@ import {
   HttpLink,
   ApolloLink,
 } from "@apollo/client";
-import { RetryLink } from "@apollo/client/link/retry";
 import { onError } from "@apollo/client/link/error";
 
-import { graphqlEndpoint } from "../env";
-import { logger } from "../logger";
+import { Env } from "@/lib/env";
+import { logger as globalLogger } from "@/lib/logger";
+
+const logger = globalLogger.child({ scope: "browser/gql-client" });
 
 const buildLink = (): ApolloLink => {
   return from([
-    onError(({ operation, graphQLErrors, networkError }) => {
-      logger.error(
-        { operation, graphQLErrors, networkError },
-        `Failed to load ${operation.operationName}`
-      );
+    onError((error) => {
+      logger.error({ ...error }, "GQL error");
     }),
 
-    new RetryLink({
-      delay: {
-        initial: 500,
-        max: 5000,
-        jitter: true,
-      },
-      attempts: {
-        max: 10,
-      },
-    }),
-
-    new HttpLink({ uri: graphqlEndpoint }),
+    new HttpLink({ uri: Env.gql.endpoint }),
   ]);
 };
 

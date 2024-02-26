@@ -1,6 +1,67 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:unicorn/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "plugins": ["prettier", "unicorn", "react", "react-hooks"],
+  "ignorePatterns": ["src/lib/gql/*"],
   "rules": {
+    "no-unused-vars": "off",
+    "no-shadow": "off",
+    "no-undef": "off",
+    "no-dupe-class-members": "off",
+    "no-redeclare": "off",
+    "import/no-unresolved": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": []
+      }
+    ],
+    "import/no-internal-modules": [
+      "error",
+      {
+        "allow": [
+          "next/**",
+          "@apollo/**",
+          "@/features/*",
+          "@/lib/*",
+          "@/lib/*/browser",
+          "@/lib/*/server",
+          "@/lib/gql/*",
+          "@/lib/styles/*",
+          "@/components/*"
+        ]
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "parent",
+            "position": "before"
+          }
+        ]
+      }
+    ],
+    "import/namespace": "off",
+    "unicorn/require-number-to-fixed-digits-argument": "off",
+    "unicorn/prefer-ternary": "off",
+    "unicorn/no-null": "off",
+    "unicorn/catch-error-name": ["error", { "name": "err" }],
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/filename-case": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error"
   }

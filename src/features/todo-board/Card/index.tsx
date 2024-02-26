@@ -1,12 +1,23 @@
 import { DateTime } from "luxon";
 
-import { JobsQuery } from "../../../generated/graphql";
+import { FragmentType, getFragmentData, graphql } from "@/lib/gql";
 
 import styles from "./styles.module.css";
 
-type Props = Omit<JobsQuery["jobs"][number], "__typename">;
+const fragment = graphql(`
+  fragment JobCard on Job {
+    id
+    status
+    createdAt
+  }
+`);
 
-export function Card({ id, status, createdAt }: Props) {
+export function Card({
+  job: jobParam,
+}: {
+  job: FragmentType<typeof fragment>;
+}) {
+  const { id, status, createdAt } = getFragmentData(fragment, jobParam);
   return (
     <article className={styles.container}>
       <h1 className={styles.title} title={id}>
