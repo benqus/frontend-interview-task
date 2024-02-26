@@ -22,21 +22,21 @@ export function TodoBoard({
 
   return (
     <div className={styles.container}>
-      <Column>
+      <Column name="To Do">
         {jobs
           .filter((it) => it.status === Status.ToDo)
           .map((it) => (
             <Card job={it} key={it.id} />
           ))}
       </Column>
-      <Column>
+      <Column name="In Progress">
         {jobs
           .filter((it) => it.status === Status.InProgress)
           .map((it) => (
             <Card job={it} key={it.id} />
           ))}
       </Column>
-      <Column>
+      <Column name="Done">
         {jobs
           .filter((it) => it.status === Status.Done)
           .map((it) => (
