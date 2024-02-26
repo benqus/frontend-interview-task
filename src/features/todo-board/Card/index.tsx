@@ -18,7 +18,7 @@ export function Card({
 }: {
   job: FragmentType<typeof fragment>;
 }) {
-  const { id, status, name, createdAt } = getFragmentData(fragment, jobParam);
+  const { status, name, createdAt } = getFragmentData(fragment, jobParam);
   return (
     <article className={styles.container}>
       <h1 className={styles.title} title={name}>
