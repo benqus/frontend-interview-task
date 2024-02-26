@@ -46,6 +46,6 @@ export async function seedMoreJobs() {
     return;
   }
 
-  const length = randomInt(1, 5);
+  const length = randomInt(25, 50);
   return Promise.all(Array.from({ length }).map(() => createJob()));
 }
