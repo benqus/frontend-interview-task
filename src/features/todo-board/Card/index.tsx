@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 const fragment = graphql(`
   fragment JobCard on Job {
     id
+    name
     status
     createdAt
   }
@@ -17,11 +18,11 @@ export function Card({
 }: {
   job: FragmentType<typeof fragment>;
 }) {
-  const { id, status, createdAt } = getFragmentData(fragment, jobParam);
+  const { id, status, name, createdAt } = getFragmentData(fragment, jobParam);
   return (
     <article className={styles.container}>
-      <h1 className={styles.title} title={id}>
-        {id}
+      <h1 className={styles.title} title={name}>
+        {name}
       </h1>
       <div className={styles.subtitle}>
         {new Intl.DateTimeFormat(undefined, {

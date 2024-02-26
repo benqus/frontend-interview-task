@@ -25,6 +25,7 @@ builder.objectType(Job, {
   fields: (t) => ({
     id: t.exposeID("id"),
     createdAt: t.expose("createdAt", { type: "DateTime" }),
+    name: t.exposeString("name"),
     status: t.field({
       type: Status,
       resolve: (it) => {
